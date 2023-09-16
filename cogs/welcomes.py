@@ -5,7 +5,7 @@ import discord.ui
 from discord.ext import commands
 from dotenv import load_dotenv
 from rich.console import Console
-from PIL import Image, ImageFont, ImageDraw
+from PIL import Image, ImageFont, ImageDraw, ImageOps
 
 console = Console()
 load_dotenv()
@@ -20,10 +20,11 @@ class Welcomes(commands.Cog):
         channel = await self.bot.fetch_channel(WELCOME_CHANNEL_ID)
         await user.display_avatar.save('assets/avatar.png')
         avatar = Image.open('assets/avatar.png')
-        count = user.guild.member_count
+        avatar = avatar.convert("RGBA")
+        avatar.save('assets/avatar.png')
+        avatar = Image.open('assets/avatar.png')
         username = user.name
         text = f"WELCOME {username.upper()}"
-        member_text = f"Member #{count}"
         img =Image.open("assets/welcome_bg.png")
         W, H = img.size
         avatar = Image.open("assets/avatar.png")
@@ -32,24 +33,24 @@ class Welcomes(commands.Cog):
         mask_img = Image.new("L", avatar.size, 0)
         mask_draw = ImageDraw.Draw(mask_img)
         mask_draw.ellipse((0, 0) + avatar.size, fill=255)
-        mask_img.save("assets/mask_circle.jpg", quality=95)
+
+        avatar = ImageOps.fit(avatar, mask_img.size, centering=(0.5, 0.5))
+        avatar.putalpha(mask_img)
+
+        avatar = avatar.convert("RGBA")
+        img = img.convert("RGBA")
         draw = ImageDraw.Draw(img)
         font = ImageFont.truetype("fonts/POPPINS-BLACK.TTF", 50)
-        # count_font = ImageFont.truetype("arial.ttf", 32)
-
-        img.paste(avatar ,(440, 80), mask_img)
-        text_size =draw.textlength(text, font=font)
-        # count_size =draw.textlength(member_text, font=count_font)
+        img.paste(avatar, (440, 80), avatar)
+        text_size = draw.textlength(text, font=font)
         draw.text(((W-text_size)/ 2, 340), text, fill=(255, 255, 255, 255), font=font, aligh="center")
-        # draw.text(((W-count_size)/ 2, 400), member_text, fill="grey", font=count_font, aligh="center")
-        img.save('assets/text.png')
+        img.save('assets/output.png')
 
-        await channel.send(file= discord.File('assets/text.png'))
+        await channel.send(file= discord.File('assets/output.png'))
 
     @commands.Cog.listener()
     async def on_member_join(self, member):
         role = 1045127837989994568 #give new_face role to new joiner so they can see welcome chanel
-        await member.add_roles(member.guild.get_role(role))
         await self.welcome_pic(member)
 
     @discord.slash_command(name="welcome", description="Welcome new member")
