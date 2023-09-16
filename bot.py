@@ -17,8 +17,6 @@ cogs_list = [
 @bot.event
 async def on_ready():
         console.log(f'{bot.user.name} has connected to Discord!')
-
-        await bot.change_presence(activity=discord.Game(name="Star Citizen"))
         for guild in bot.guilds:
             # PRINT THE SERVER'S ID AND NAME.
             console.log(f"- {guild.id} | {guild.name}")
