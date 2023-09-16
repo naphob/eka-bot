@@ -22,7 +22,7 @@ class Welcomes(commands.Cog):
         avatar = Image.open('assets/avatar.png')
         count = user.guild.member_count
         username = user.name
-        text = f"WELCOME {username} to eKA ESPORTS"
+        text = f"WELCOME {username.upper()}"
         member_text = f"Member #{count}"
         img =Image.open("assets/welcome_bg.png")
         W, H = img.size
@@ -34,7 +34,7 @@ class Welcomes(commands.Cog):
         mask_draw.ellipse((0, 0) + avatar.size, fill=255)
         mask_img.save("assets/mask_circle.jpg", quality=95)
         draw = ImageDraw.Draw(img)
-        font = ImageFont.truetype("~/.fonts/Poppins-Bold.ttf", 50)
+        font = ImageFont.truetype("fonts/POPPINS-BLACK.TTF", 50)
         # count_font = ImageFont.truetype("arial.ttf", 32)
 
         img.paste(avatar ,(440, 80), mask_img)
@@ -55,6 +55,8 @@ class Welcomes(commands.Cog):
     @discord.slash_command(name="welcome", description="Welcome new member")
     async def welcome(self,ctx, user: discord.Member):
         await self.welcome_pic(user)
+        await ctx.send_response("Welcome image has been posted.", ephemeral=True)
+
 
 def setup(bot): # this is called by Pycord to setup the cog
     bot.add_cog(Welcomes(bot)) # add the cog to the bot
