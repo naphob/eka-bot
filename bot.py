@@ -9,9 +9,9 @@ load_dotenv()
 TOKEN = os.getenv("TOKEN")
 intents = discord.Intents.all()
 bot = commands.Bot(intents=intents)
-bot = commands.Bot()
 cogs_list = [
     'welcomes',
+    'announces',
 ]
 
 @bot.event

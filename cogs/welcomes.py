@@ -1,14 +1,10 @@
-import os
-import re
 import discord
 import discord.ui
 from discord.ext import commands
-from dotenv import load_dotenv
 from rich.console import Console
 from PIL import Image, ImageFont, ImageDraw, ImageOps
 
 console = Console()
-load_dotenv()
 
 WELCOME_CHANNEL_ID = 1151150503032524803
 
@@ -50,8 +46,9 @@ class Welcomes(commands.Cog):
 
     @commands.Cog.listener()
     async def on_member_join(self, member):
-        role = 1045127837989994568 #give new_face role to new joiner so they can see welcome chanel
         await self.welcome_pic(member)
+        console.log(f"New member joined. {member.display_name}")
+
 
     @discord.slash_command(name="welcome", description="Welcome new member")
     async def welcome(self,ctx, user: discord.Member):
