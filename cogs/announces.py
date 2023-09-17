@@ -23,7 +23,7 @@ class AnnouceModal(discord.ui.Modal):
         embed.add_field(name=self.children[0].value, value=self.children[2].value)
 
         await self.channel.send(embed=embed)
-        await interaction.response.send_message(f"ส่งประกาศไปที่ {self.channel} แล้ว", ephemeral = True)
+        await interaction.response.send_message(f"ส่งประกาศไปที่ {self.channel.mention} แล้ว", ephemeral = True)
 
 class Announces(commands.Cog):
     def __init__(self, bot):
