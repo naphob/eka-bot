@@ -30,13 +30,20 @@ class Welcomes(commands.Cog):
         mask_draw = ImageDraw.Draw(mask_img)
         mask_draw.ellipse((0, 0) + avatar.size, fill=255)
 
+        border_img = Image.new('RGBA', avatar.size, 255)
+        border_draw = ImageDraw.Draw(mask_img)
+        border_draw.ellipse((0, 0) + (240,240), fill=None, outline='orange', width=10)
+
+
         avatar = ImageOps.fit(avatar, mask_img.size, centering=(0.5, 0.5))
         avatar.putalpha(mask_img)
 
+        # border_img = border_img.convert("RGBA")
         avatar = avatar.convert("RGBA")
         img = img.convert("RGBA")
         draw = ImageDraw.Draw(img)
         font = ImageFont.truetype("fonts/POPPINS-BLACK.TTF", 50)
+        img.paste(border_img, (415, 60), border_img)
         img.paste(avatar, (440, 80), avatar)
         text_size = draw.textlength(text, font=font)
         draw.text(((W-text_size)/ 2, 340), text, fill=(255, 255, 255, 255), font=font, aligh="center")
