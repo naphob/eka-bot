@@ -1,5 +1,4 @@
 import discord
-import discord.ui
 from discord.ext import commands
 from rich.console import Console
 from PIL import Image, ImageFont, ImageDraw, ImageOps
@@ -38,7 +37,6 @@ class Welcomes(commands.Cog):
         avatar = ImageOps.fit(avatar, mask_img.size, centering=(0.5, 0.5))
         avatar.putalpha(mask_img)
 
-        # border_img = border_img.convert("RGBA")
         avatar = avatar.convert("RGBA")
         img = img.convert("RGBA")
         draw = ImageDraw.Draw(img)

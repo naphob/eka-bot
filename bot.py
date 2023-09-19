@@ -12,6 +12,7 @@ bot = commands.Bot(intents=intents)
 cogs_list = [
     'welcomes',
     'announces',
+    'utils',
 ]
 
 @bot.event
