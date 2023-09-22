@@ -35,7 +35,28 @@ class PageView(discord.ui.View):
         scoreboard2 = discord.ui.Button(
                         label="ตารางคะแนน",
                         style=discord.ButtonStyle.url,
-                        url="https://twire.gg/en/pubg/tournaments/tournament/1143/dangerous-scrim-by-dangerous-esports",
+                        url="https://twire.gg/en/pubg/tournaments/tournament/1143/dangerous-scrim-by-dangerous-esports/leaderboards?round=round64&group=group-3",
+        )
+        self.add_item(button2)
+        self.add_item(scoreboard2)
+
+    @discord.ui.button(label='', style=discord.ButtonStyle.gray, custom_id='notify2', emoji='🔕', disabled=True)
+    async def notify_callback(self, button, interaction):
+        await interaction.response.send_message("This tournament's alert has been set", ephemeral=True)
+
+class PageView3(discord.ui.View):
+    def __init__(self):
+        super().__init__(timeout=None)
+
+        button2 = discord.ui.Button(
+                        label="รายละเอียดเพิ่มเติม",
+                        style=discord.ButtonStyle.url,
+                        url="https://www.facebook.com/DANGEROUS.ESPORTS.TH/posts/pfbid02DD88rmr6Smhdaz4gtam6N3iroRsbhNkenteQEF7sfe2fED9sPhAaMfx2d6qWkdR7l"
+        )
+        scoreboard2 = discord.ui.Button(
+                        label="ตารางคะแนน",
+                        style=discord.ButtonStyle.url,
+                        url="https://twire.gg/en/pubg/tournaments/tournament/1143/dangerous-scrim-by-dangerous-esports/leaderboards?round=round64&group=group-3",
                         disabled=True
         )
         self.add_item(button2)
@@ -56,7 +77,7 @@ class PTCView(discord.ui.View):
                         url="https://www.facebook.com/Attacker.Clan/posts/pfbid024fXVx8JS9Gj3wiVTufLHU7zQCqkWBCzibiTn8UTUtHMboikyzA9tvL5WEWVGRqJjl"
         )
         scoreboard = discord.ui.Button(
-                        label="Scoreboard",
+                        label="ตารางคะแนน",
                         style=discord.ButtonStyle.url,
                         url="https://twire.gg/en/pubg/tournaments/tournament/1143/dangerous-scrim-by-dangerous-esports",
                         disabled=True
@@ -80,7 +101,7 @@ class Utils(commands.Cog):
             color= discord.Color.from_rgb(255, 79, 0)
         )
 
-        embed.add_field(name="LINE UP", value="`- BackwidowX\n- Jiwjix\n- MYTG-\n- Bizview`", inline=True)
+        embed.add_field(name="LINE UP", value="`- BackWiDowX\n- Jiwjix\n- MYTG-\n- Bizview`", inline=True)
         embed.add_field(name="COACH", value="`ZENZEEN`", inline=True)
         embed.set_thumbnail(url="https://media.discordapp.net/attachments/1151145807769251950/1151146304093818880/EKA_logomark.png")
 
@@ -114,8 +135,8 @@ class Utils(commands.Cog):
         embed2.set_thumbnail(url="https://cdn.discordapp.com/attachments/1106995464852738140/1134885054481444885/received_152468377868777.webp")
         embed2.add_field(name="Roud", value="`64 ทีม`")
         embed2.add_field(name="Group", value="`3`")
-        embed2.add_field(name="Status", value="`UPCOMING`")
-        embed2.add_field(name="Result", value="`-`")
+        embed2.add_field(name="Status", value="`End`")
+        embed2.add_field(name="Result", value="`อันดับ 5`")
         embed2.add_field(name="Time", value="`22/09/2023 19:00`")
 
         embed3 = discord.Embed(
@@ -123,13 +144,29 @@ class Utils(commands.Cog):
             color=discord.Color.from_rgb(255, 79, 0)
         )
 
-        embed3.set_thumbnail(url="https://twire-assets.s3.eu-west-1.amazonaws.com/pubg/tournament-logos/ptc-23.png")
-        embed3.set_image(url="https://lh5.googleusercontent.com/1rrt7rQidfMyBu72rdvM6AyZ9v5tWo9lro1yzsP0AiKXkLZPLCZ_mAuXU9ou7Lxi4alw2jxCRcyaqMpau4HeNk0PurSaDiCm0BP8wTDkG1YSwITBlAUa6uHlzZb6rGjd6Q=w1600")
-        embed3.add_field(name="Roud", value="`-`")
-        embed3.add_field(name="Group",value="`-`")
-        embed3.add_field(name="Status",value="`UPCOMING`")
-        embed3.add_field(name="Result",value="`-`")
-        embed3.add_field(name="Time", value="`28/09/2023`")
+        embed3 = discord.Embed(
+            title="ANGEROUS TOURNAMENT BY AFREECATV SS2",
+            color=discord.Color.from_rgb(255, 79, 0)
+        )
+        embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/1106995464852738140/1134885054481444885/received_152468377868777.webp")
+        embed3.add_field(name="Roud", value="`32 ทีม`")
+        embed3.add_field(name="Group", value="`2`")
+        embed3.add_field(name="Status", value="`UPCOMING`")
+        embed3.add_field(name="Result", value="`-`")
+        embed3.add_field(name="Time", value="`23/09/2023 19:00`")
+
+        embed4 = discord.Embed(
+            title="PUBG Thailand Championship 2023",
+            color=discord.Color.from_rgb(255, 79, 0)
+        )
+
+        embed4.set_thumbnail(url="https://twire-assets.s3.eu-west-1.amazonaws.com/pubg/tournament-logos/ptc-23.png")
+        embed4.set_image(url="https://lh5.googleusercontent.com/1rrt7rQidfMyBu72rdvM6AyZ9v5tWo9lro1yzsP0AiKXkLZPLCZ_mAuXU9ou7Lxi4alw2jxCRcyaqMpau4HeNk0PurSaDiCm0BP8wTDkG1YSwITBlAUa6uHlzZb6rGjd6Q=w1600")
+        embed4.add_field(name="Roud", value="`-`")
+        embed4.add_field(name="Group",value="`-`")
+        embed4.add_field(name="Status",value="`UPCOMING`")
+        embed4.add_field(name="Result",value="`-`")
+        embed4.add_field(name="Time", value="`28/09/2023`")
 
 
 
@@ -145,6 +182,11 @@ class Utils(commands.Cog):
 
         page3 = pages.Page(
             embeds=[embed3],
+            custom_view=PageView3()
+        )
+
+        page4 = pages.Page(
+            embeds=[embed4],
             custom_view=PTCView()
         )
 
@@ -152,6 +194,7 @@ class Utils(commands.Cog):
         tour_page.append(page)
         tour_page.append(page2)
         tour_page.append(page3)
+        tour_page.append(page4)
 
         paginator = pages.Paginator(pages=tour_page, loop_pages= True, timeout=None)
         paginator.remove_button("first")

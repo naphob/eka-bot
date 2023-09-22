@@ -3,7 +3,7 @@ import discord
 from dotenv import load_dotenv
 from discord.ext import commands
 from rich.console import Console
-from cogs.utils import DGView, PTCView, PageView
+from cogs.utils import DGView, PTCView, PageView, PageView3
 
 console = Console()
 load_dotenv()
@@ -22,6 +22,7 @@ async def on_ready():
 
         bot.add_view(DGView())
         bot.add_view(PageView())
+        bot.add_view(PageView3())
         bot.add_view(PTCView())
 
         await bot.change_presence(activity=discord.Game(name="type / for commands"))
