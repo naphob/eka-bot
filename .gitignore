@@ -2,3 +2,4 @@
 avatar.png
 output.png
 *.json
+__pycache__/

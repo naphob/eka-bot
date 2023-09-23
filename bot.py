@@ -21,8 +21,6 @@ cogs_list = [
 async def on_ready():
         console.log(f'{bot.user.name} has connected to Discord!')
 
-        bot.add_view(UpdateView())
-
         await bot.change_presence(activity=discord.Game(name="type / for commands"))
 
         for guild in bot.guilds:
