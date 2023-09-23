@@ -3,7 +3,7 @@ import discord
 from dotenv import load_dotenv
 from discord.ext import commands
 from rich.console import Console
-from cogs.utils import DGView, PTCView, PageView, PageView3
+from cogs.tournaments import UpdateView
 
 console = Console()
 load_dotenv()
@@ -14,16 +14,14 @@ cogs_list = [
     'welcomes',
     'announces',
     'utils',
+    'tournaments',
 ]
 
 @bot.event
 async def on_ready():
         console.log(f'{bot.user.name} has connected to Discord!')
 
-        bot.add_view(DGView())
-        bot.add_view(PageView())
-        bot.add_view(PageView3())
-        bot.add_view(PTCView())
+        bot.add_view(UpdateView())
 
         await bot.change_presence(activity=discord.Game(name="type / for commands"))
 
