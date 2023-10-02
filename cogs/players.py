@@ -8,7 +8,7 @@ class PlayerModal(discord.ui.Modal):
     def __init__(self, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs, timeout=None)
 
-        self.tournaments = db.reference('players')
+        self.players = db.reference('players')
         self.add_item(discord.ui.InputText(label="IGN", style=discord.InputTextStyle.short))
         self.add_item(discord.ui.InputText(label="Player ID", style=discord.InputTextStyle.short))
         self.add_item(discord.ui.InputText(label="Role", style=discord.InputTextStyle.short, required=False))
@@ -18,14 +18,15 @@ class PlayerModal(discord.ui.Modal):
         player_id = self.children[1].value
         role = self.children[2].value
 
-        self.tournaments.child(f"{player_id}").update({
+        self.players.child(f"{player_id}").update({
             'ign': ign,
             'role': role,
         })
         await interaction.response.send_message(f"สร้างข้อมูลแล้ว", ephemeral=True)
 
 class Players(commands.Cog):
-    def __init__(self):
+    def __init__(self, bot):
+        self.bot = bot
         self.players = db.reference('players')
 
     @discord.slash_command(name="players_add", description="Add new tournament")
