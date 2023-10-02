@@ -15,6 +15,7 @@ cogs_list = [
     'announces',
     'utils',
     'tournaments',
+    'players',
 ]
 
 @bot.event

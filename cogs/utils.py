@@ -13,7 +13,7 @@ class Utils(commands.Cog):
             color= discord.Color.from_rgb(255, 79, 0)
         )
 
-        embed.add_field(name="LINE UP", value="`- BackWiDowX\n- Jiwjix\n- MYTG-\n- Bizview`", inline=True)
+        embed.add_field(name="LINE UP", value="`🔥 BackWiDowX\n🔥 Jiwjixz\n🔥 MYTG-\n🔥 Bizview`", inline=True)
         embed.add_field(name="COACH", value="`ZENZEEN`", inline=True)
         embed.set_thumbnail(url="https://media.discordapp.net/attachments/1151145807769251950/1151146304093818880/EKA_logomark.png")
 
