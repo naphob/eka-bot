@@ -26,5 +26,10 @@ class Utils(commands.Cog):
         await ctx.send(file=file)
         await ctx.send_response("แสดงผลแล้ว", ephemeral=True)
 
+    @discord.slash_command(name="post", description="create a post")
+    async def post(self, ctx, msg):
+        await ctx.send(msg)
+        await ctx.send_response("โพสต์สำเร็จแล้ว", ephemeral=True)
+
 def setup(bot): # this is called by Pycord to setup the cog
     bot.add_cog(Utils(bot)) # add the cog to the bot
